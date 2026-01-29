@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TARU MART | Online Grocery Store</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:#f7f7f7;
+    color:#333;
+}
+header{
+    background:#2e7d32;
+    color:white;
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+header h1{
+    margin:0;
+    font-size:28px;
+}
+header p{
+    margin:0;
+    font-size:14px;
+    opacity:0.9;
+}
+
+.section{
+    padding:40px;
+}
+.brand{
+    background:white;
+    border-radius:12px;
+    padding:30px;
+    margin-bottom:40px;
+}
+.brand h2{
+    margin-top:0;
+    color:#2e7d32;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+.product{
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:transform 0.2s;
+}
+.product:hover{
+    transform:translateY(-5px);
+}
+.product img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+}
+.product h3{
+    margin:10px 0 5px;
+}
+.product p{
+    margin:0;
+    font-size:14px;
+}
+.product button{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    font-size:15px;
+}
+.product button:hover{
+    background:#256628;
+}
+
+.cart, .payment{
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    margin-top:40px;
+}
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+.cart-item button{
+    background:#d32f2f;
+    border:none;
+    color:white;
+    border-radius:50%;
+    width:26px;
+    height:26px;
+    cursor:pointer;
+}
+.payment select, .payment button{
+    padding:10px;
+    width:100%;
+    margin-top:10px;
+    font-size:15px;
+}
+.payment button{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+}
+footer{
+    background:#1b5e20;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>TARU MART</h1>
+    <p>Fresh • Quality • Everyday Essentials</p>
+</header>
+
+<div class="section">
+
+<!-- BRAND INFO -->
+<div class="brand">
+    <h2>About TARU MART</h2>
+    <p><b>Owner:</b> Tarun Taru</p>
+    <p><b>Business:</b> Online Grocery Store</p>
+    <p><b>Mission:</b> Deliver fresh groceries at affordable prices with trust and quality.</p>
+</div>
+
+<!-- PRODUCTS -->
+<h2>Grocery Products</h2>
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1604908177522-040c8d4e1a0b?auto=format&fit=crop&w=800&q=80">
+<h3>Rice</h3>
+<p>₹60 / kg</p>
+<button onclick="add('Rice',60)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1603048297172-c92544798d2f?auto=format&fit=crop&w=800&q=80">
+<h3>Wheat</h3>
+<p>₹55 / kg</p>
+<button onclick="add('Wheat',55)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1585238342028-4b1d7b3a97e3?auto=format&fit=crop&w=800&q=80">
+<h3>Milk</h3>
+<p>₹50 / packet</p>
+<button onclick="add('Milk',50)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80">
+<h3>Vegetables</h3>
+<p>₹40</p>
+<button onclick="add('Vegetables',40)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1574226516831-e1dff420e12e?auto=format&fit=crop&w=800&q=80">
+<h3>Fruits</h3>
+<p>₹80</p>
+<button onclick="add('Fruits',80)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1615486364539-8c9f6d6c6c5f?auto=format&fit=crop&w=800&q=80">
+<h3>Sugar</h3>
+<p>₹45 / kg</p>
+<button onclick="add('Sugar',45)">Add to Cart</button>
+</div>
+
+</div>
+
+<!-- CART -->
+<div class="cart">
+<h2>Your Cart</h2>
+<div id="cart"></div>
+<h3>Total: ₹<span id="total">0</span></h3>
+</div>
+
+<!-- PAYMENT -->
+<div class="payment">
+<h2>Payment Method</h2>
+<select id="paymentMethod">
+    <option>Cash on Delivery</option>
+    <option>UPI</option>
+    <option>Debit / Credit Card</option>
+</select>
+<button onclick="placeOrder()">Place Order</button>
+</div>
+
+</div>
+
+<footer>
+    © 2026 TARU MART | Designed by Tarun Taru
+</footer>
+
+<script>
+let cart=[];
+let total=0;
+
+function add(item,price){
+    cart.push({item,price});
+    total+=price;
+    render();
+}
+
+function render(){
+    const c=document.getElementById("cart");
+    c.innerHTML="";
+    cart.forEach((x,i)=>{
+        c.innerHTML+=`
+        <div class="cart-item">
+            ${x.item} - ₹${x.price}
+            <button onclick="removeItem(${i})">×</button>
+        </div>`;
+    });
+    document.getElementById("total").innerText=total;
+}
+
+function removeItem(i){
+    total-=cart[i].price;
+    cart.splice(i,1);
+    render();
+}
+
+function placeOrder(){
+    if(cart.length===0){
+        alert("Your cart is empty");
+        return;
+    }
+    alert(
+        "Order placed successfully!\n" +
+        "Payment: " + document.getElementById("paymentMethod").value +
+        "\nTotal: ₹" + total
+    );
+    cart=[];
+    total=0;
+    render();
+}
+</script>
+
+</body>
+</html>
